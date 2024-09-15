@@ -1,0 +1,89 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html,body {
+    height: 100%;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Roboto,sans-serif;
+}
+.calculator {
+    background-color: grey;
+    width: 440px;
+    height: 560px;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: 1px solid black;
+}
+
+.screen {
+    height: 100px;
+    width: 400px;
+    background-color: white;
+    margin-bottom: 20px ;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding:1px 5px;
+    font-size: 40px;
+}
+
+.key {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#6a6a6a;
+    flex-grow:1;
+    flex-basis: 92px;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-size: 20px;
+}
+
+.undo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap:10px;
+}
+
+.clear {
+    background-color: hsl(2, 63%, 57%); 
+    text-align: center;
+    border: 1px solid black;
+    /* padding: 20px 60px; */
+    flex: 1;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.delete {
+    background-color: #A7C7E7;
+    text-align: center;
+    border: 1px solid black;
+    padding: 20px;
+    flex: 1;
+    border-radius: 5px;
+    font-size: 20px;
+}
+.keyboard {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex:1;
+    gap: 10px;
+}
