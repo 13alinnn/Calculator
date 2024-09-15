@@ -9,12 +9,22 @@ keys.forEach(key => {
             key.style.backgroundColor = initialColor;
         });
     }
-    if(key.className.split(' ').includes('delete')) {
+    else {
+        if(key.className.split(' ').includes('delete')) {
         key.addEventListener('mouseover', () => {
             key.style.backgroundColor = 'hsl(210, 57%, 73%)';
         });
         key.addEventListener('mouseleave', () => {
             key.style.backgroundColor = initialColor;
-        })
+        });
+    }
+        else {
+            key.addEventListener('mouseover', () => {
+                key.style.backgroundColor = 'hsl(0, 0%, 40%)';
+            });
+            key.addEventListener('mouseleave', () => {
+                key.style.backgroundColor = initialColor;
+            });            
+        }
     }
     });
