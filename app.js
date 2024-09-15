@@ -1,4 +1,7 @@
 const keys = document.querySelectorAll('.key');
+const del = document.querySelector('.delete');
+const clear = document.querySelector('.clear');
+const screen = document.querySelector('.screen p');
 keys.forEach(key => {
     const initialColor = key.style.backgroundColor;
     if(key.className.split(' ').includes('clear')) {
@@ -28,3 +31,12 @@ keys.forEach(key => {
         }
     }
     });
+    clear.addEventListener('click', () => {
+        screen.textContent = '';
+    });
+    function deleteLastLetter(string) {
+        return string.slice(0,-1);
+    }
+    del.addEventListener('click', () => {
+        screen.textContent = deleteLastLetter(screen.textContent);
+    })
