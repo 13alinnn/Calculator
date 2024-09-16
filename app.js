@@ -7,7 +7,7 @@ const current = document.querySelector(".current");
 const last = document.querySelector(".last");
 const eq = document.querySelector(".eq");
 let result = 0;
-
+let operation = '';
 keys.forEach((key) => {
 	const initialColor = key.style.backgroundColor;
 	if (key.className.split(" ").includes("clear")) {
@@ -57,6 +57,7 @@ del.addEventListener("click", () => {
 	current.textContent = deleteLastLetter(current.textContent);
 });
 
+// input
 operators.forEach((operator) => {
 	operator.addEventListener("click", () => {
 		if (current.textContent) {
@@ -77,10 +78,39 @@ operators.forEach((operator) => {
 				last.textContent = `${current.textContent} ${operator.textContent}`;
 				current.textContent = "0";
 			}
+            //about to add feature where operators function like the equals button when pressed if last content has text inside it
 		}
 	});
 });
 
 eq.addEventListener('click', () => {
-    let 
+	if((last.textContent || last.textContent === '0') && (current.textContent || current.textContent === '0')) {
+		equal();
+	}
 });
+
+function equal() {
+	let result;
+	let num1 = parseInt(last.textContent,10);
+	let num2 = parseInt(current.textContent);
+	operation = last.textContent.slice(-1);
+	switch(operation) {
+		case '×':
+			result = num1 * num2;
+			break;
+		case '÷':
+			if(num2 === 0)
+				result = 'ERROR';
+			else	
+				result = num1 / num2;
+			break;
+		case '+':
+			result = num1 + num2;
+			break;
+		case '-':
+			result = num1 - num2;
+			break;
+	}
+	last.textContent = `${num1} ${operation} ${num2}`;
+	current.textContent = result;
+}
