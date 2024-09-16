@@ -59,7 +59,7 @@ del.addEventListener("click", () => {
 
 operators.forEach((operator) => {
 	operator.addEventListener("click", () => {
-		if (current.textContent || last.textContent) {
+		if (current.textContent) {
 			if (last.textContent === "") {
 				last.textContent = `${current.textContent} ${operator.textContent}`;
 				current.textContent = "0";
