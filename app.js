@@ -1,8 +1,13 @@
 const keys = document.querySelectorAll('.key');
 const numbers = document.querySelectorAll('.num');
+const operators = document.querySelectorAll('.operator');
 const del = document.querySelector('.delete');
 const clear = document.querySelector('.clear');
-const screen = document.querySelector('.screen p');
+const current = document.querySelector('.current');
+const last = document.querySelector('.last');
+const eq = document.querySelector('.=');
+let calculation ='';
+let result = 0;
 
 keys.forEach(key => {
     const initialColor = key.style.backgroundColor;
@@ -37,15 +42,30 @@ keys.forEach(key => {
 numbers.forEach(number => {
     number.addEventListener('click',() => {
         const value = number.textContent;
-        screen.textContent += value;
+        current.textContent += value;
     });
 });
+
 clear.addEventListener('click', () => {
-    screen.textContent = '';
+    current.textContent = '';
+    last.textContent = '';
 });
+
 function deleteLastLetter(string) {
     return string.slice(0,-1);
 }
+
 del.addEventListener('click', () => {
-    screen.textContent = deleteLastLetter(screen.textContent);
+    current.textContent = deleteLastLetter(current.textContent);
 });
+
+operators.forEach(operator => {
+    operator.addEventListener('click', () =>{
+        if(last.textContent === '') last.textContent += current.textContent + ' ';
+        if(last.textContent.slice(-1) === '+' || last.textContent.slice(-1) === '-' || last.textContent.slice(-1) === '×' || last.textContent.slice(-1) === '÷') 
+            last.textContent = last.textContent.slice(0, -1);
+        last.textContent += operator.textContent;
+        current.textContent = '0';
+    });
+});
+
