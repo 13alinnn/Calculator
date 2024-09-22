@@ -1,4 +1,4 @@
-const calculator = document.querySelector('.calculator');
+const buttons = document.querySelectorAll('.key');
 const screen = document.querySelector('.screen');
 const last = document.querySelector('.last');
 const current = document.querySelector('.current');
@@ -46,7 +46,7 @@ operators.forEach(btn => {
 		}
 			else divisionByZero();
 		}
-		if(current.textContent !== '' || last.textContent !== '') { //vad dupa daca las num1 === ''
+		if(current.textContent !== '0' && (current.textContent !== '' || last.textContent !== '')) { 
 			if(sign === '') {
 				sign = btn.textContent;
 				num1 = num2;
@@ -109,3 +109,42 @@ clear.addEventListener('click', () => {
 	shouldRefreshScreen = true;
 	sign = '';
 });
+
+buttons.forEach((key) => {
+	const initialColor = key.style.backgroundColor;
+	if (key.className.split(" ").includes("clear")) {
+		key.addEventListener("mouseover", () => {
+			key.style.backgroundColor = "hsl(3, 64%, 52%)";
+		});
+		key.addEventListener("mouseleave", () => {
+			key.style.backgroundColor = initialColor;
+		});
+	} else {
+		if (key.className.split(" ").includes("delete")) {
+			key.addEventListener("mouseover", () => {
+				key.style.backgroundColor = "hsl(210, 57%, 73%)";
+			});
+			key.addEventListener("mouseleave", () => {
+				key.style.backgroundColor = initialColor;
+			});
+		} else {
+			key.addEventListener("mouseover", () => {
+				key.style.backgroundColor = "hsl(0, 0%, 40%)";
+			});
+			key.addEventListener("mouseleave", () => {
+				key.style.backgroundColor = initialColor;
+			});
+		}
+	}
+});
+
+dot.addEventListener('click', () => {
+	if(shouldRefreshScreen) {
+		current.textContent = '0';
+		shouldRefreshScreen = false;
+	}
+	if(current.textContent === '') current.textContent = '0';
+	if(current.textContent.includes('.')) return;
+	current.textContent += '.';
+	num2 += '.';
+})
