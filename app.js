@@ -90,4 +90,22 @@ equals.addEventListener('click', () =>{
 		shouldRefreshScreen = true;}
 		else divisionByZero();
 	}
-})
+});
+
+function deleteLastLetter(str) {
+	return str.slice(0,-1);
+}
+
+del.addEventListener('click', () => {
+	num2 = deleteLastLetter(num2);
+	current.textContent = deleteLastLetter(current.textContent);
+});
+
+clear.addEventListener('click', () => {
+	num1 = '';
+	num2 = '';
+	current.textContent = '0';
+	last.textContent = '';
+	shouldRefreshScreen = true;
+	sign = '';
+});
